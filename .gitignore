@@ -1,0 +1,5 @@
+log
+tmp
+.bundle
+.sass-cache
+.DS_Store

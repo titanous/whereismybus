@@ -1,0 +1,96 @@
+!!!
+%head
+  :javascript
+    var _sf_startpt=(new Date()).getTime()
+
+  %title Where is my bus?
+  %script(src='/javascripts/zepto.min.js')
+  %script(src='/javascripts/geo.min.js')
+  %script(src='/javascripts/underscore.min.js')
+  %script(src='/javascripts/backbone.min.js')
+  %script(src='/javascripts/ICanHaz.min.js')
+  %script(src='/javascripts/vertebrae.min.js')
+  %script(src='/javascripts/app.js')
+  %link(rel='stylesheet' type='text/css' href='/stylesheets/vertebrae.css')
+  %link(rel='stylesheet' type='text/css' href='/stylesheets/main.css')
+
+  %meta(name='viewport' content='width=device-width, user-scalable=no')
+
+  %script#stopRow(type='text/html')
+    %a(href='#stop/{{id}}')
+      %span.number {{number}}
+      %span.name {{name}}
+      {{#distance}}
+      %span.distance {{distance}}m
+      {{/distance}}
+
+  %script#stop(type='text/html')
+    {{#routes}}
+    .route(id='{{number}}')
+      %h2 {{number}}
+      {{#directions}}
+      .direction
+        %h3 {{direction}}
+        %ul.trips
+          {{#trips}}
+          %li
+            %time {{arrival}}
+          {{/trips}}
+      {{/directions}}
+    {{/routes}}
+
+%body
+  #home.view.active-view
+    #header
+      %h1 Where is my bus?
+    #content
+      %form.search(onsubmit='app.search();return false;')
+        %input(type='text' name='q')
+        %input(type='submit' value='Search Stops')
+      %button.locate Find Me!
+
+      %p.notice
+        Due to recent events, the OC Transpo live feed is temporarily
+        unavailable. This app will provide static schedules until it
+        becomes available again.
+
+      %p
+        Please use a Webkit-based browser such as your iPhone, Android
+        device, Google Chrome, or Apple Safari, for best results.
+
+      %p.contact
+        This app was created by
+        %a(href='mailto:jonathan@titanous.com') Jonathan Rudenberg
+        (<a href='http://twitter.com/titanous'>@titanous</a>) as an entry for the 
+        <a href='http://apps4ottawa.ca/en/apps/81'>Ottawa Open Data App Contest</a>. Please vote for it.
+      %p(style='height:90px')
+  #loading-indicator.spin
+  #error-flash
+    .message
+    %a.retry Retry?
+  :javascript
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-316852-13']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+
+    var _sf_async_config={uid:16478,domain:"whereismybus.ca"};
+    (function(){
+      function loadChartbeat() {
+        window._sf_endpt=(new Date()).getTime();
+        var e = document.createElement('script');
+        e.setAttribute('language', 'javascript');
+        e.setAttribute('type', 'text/javascript');
+        e.setAttribute('src',
+           (("https:" == document.location.protocol) ? "https://a248.e.akamai.net/chartbeat.download.akamai.com/102508/" : "http://static.chartbeat.com/") +
+           "js/chartbeat.js");
+        document.body.appendChild(e);
+      }
+      var oldonload = window.onload;
+      window.onload = (typeof window.onload != 'function') ?
+         loadChartbeat : function() { oldonload(); loadChartbeat(); };
+    })();

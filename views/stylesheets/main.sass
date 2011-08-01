@@ -1,0 +1,160 @@
+@import 'compass/reset'
+@import 'compass/css3/gradient'
+@import 'fancy-buttons'
+
+body
+  background-color: #1e1e1e
+  color: #dfdfdf
+  font-family: Helvetica, Arial, sans-serif
+  font-size: 14px
+
+em
+  font-style: italic
+
+strong
+  font-weight: bold
+
+p
+  margin-bottom: 10px
+
+#content
+  padding-left: 20px
+  padding-right: 20px
+  font-size: 15px
+
+#header
+  height: 30px
+  padding-top: 10px
+  +linear-gradient(color-stops(#3e5874, #2c3f53))
+  h1
+    font-weight: bold
+    font-size: 18px
+    text-align: center
+
+body.loading
+  overflow: hidden
+  #loading-indicator
+    display: block
+
+#loading-indicator
+  display: none
+  position: absolute
+  z-index: 10
+  left: 50%
+  background-image: image-url('loading.png')
+  background-size: 35px 35px
+  height: 35px
+  width: 35px
+
+body.error
+  overflow: hidden
+  #error-flash
+    display: block
+
+#error-flash
+  display: none
+  position: absolute
+  bottom: 0px
+  width: 100%
+  font-size: 20px
+  padding-top: 5px
+  padding-bottom: 5px
+  background-color: #9e2a2c
+  min-height: 30px
+  z-index: 10
+  text-align: center
+  .retry
+    display: none
+  &.retry .retry
+    display: inline
+
+form.search
+  input[type=text]
+    width: 90%
+    display: block
+    height: 40px
+    margin: 10px auto
+    border: none
+    background-color: #dfdfdf
+    font-size: 20px
+    font-weight: bold
+  input[type=submit]
+    +fancy-button-matte(#5f6974, 25px)
+    display: block
+    margin: 5px auto
+    width: 80%
+
+button.locate
+  +fancy-button-matte(#467440, 25px)
+  width: 80%
+  display: block
+  margin: 10px auto
+
+li.stop
+  a
+    text-decoration: none
+    color: inherit
+  &:active
+    background-color: #818181
+  display: block
+  height: 40px
+  border-bottom: 1px solid #373737
+  padding-left: 20px
+  padding-right: 10px
+  padding-top: 15px
+  .number
+    font-weight: bold
+    font-size: 25px
+  .name
+    font-weight: bold
+    vertical-align: 20%
+    font-size: 15px
+  .distance
+    float: right
+    padding-top: 6px
+
+.route
+  padding-left: 20px
+  margin-top: 10px
+  padding-bottom: 10px
+  border-bottom: 3px solid #373737
+  h2
+    float: left
+
+
+  .direction
+    margin-top: 10px
+    h3
+      font-size: 20px
+      font-weight: bold
+      padding-top: 10px
+      margin-left: 10px
+      float: left
+    ul
+      font-size: 30px
+      margin-top: 5px
+      clear: both
+    li
+      display: inline
+      margin-left: 5px
+      //border-bottom: 2px solid
+      &.ontime
+        border-color: #288824
+      &.early
+        border-color: #9e2a2c
+      &.late
+        border-color: #9f562a
+      &.scheduled
+        border-color: #dfdfdf
+h2
+  font-size: 35px
+  font-weight: bold
+
+a, a:visited, a:active
+  color: inherit
+  text-decoration: underline
+  cursor: pointer
+
+.notice
+  color: #ba6431
+  font-weight: bold
